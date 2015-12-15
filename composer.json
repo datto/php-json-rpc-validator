@@ -1,0 +1,26 @@
+{
+    "name": "datto/json-rpc-validator",
+    "description": "Auth extension for JSON-RPC library",
+    "authors": [
+        {
+            "name": "Philipp Heckel",
+            "email": "ph@datto.com"
+        }
+    ],
+    "require": {
+        "datto/json-rpc-simple": "~4.0",
+        "symfony/validator": "~2.7",
+        "doctrine/annotations": "~1.2",
+        "doctrine/cache": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Datto\\JsonRpc\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Datto\\": "tests/"
+        }
+    }
+}
