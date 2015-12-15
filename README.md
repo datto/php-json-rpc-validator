@@ -1,17 +1,9 @@
-# json-rpc-validator
+# JSON-RPC Endpoint Validator Extension
 
-This is a validation extension for the [php-json-rpc](https://github.com/datto/php-json-rpc) library. It depends on [symfony/Validator](https://github.com/symfony/Validator), [doctrine/annotations](https://github.com/doctrine/annotations) as well as on [php-json-rpc-simple](https://github.com/datto/php-json-rpc-simple). Since Symfony 2.7 is used, this library **does not work on Ubuntu 10.04**!
+This is a validation extension for the [php-json-rpc](https://github.com/datto/php-json-rpc) library. It depends on [symfony/Validator](https://github.com/symfony/Validator), [doctrine/annotations](https://github.com/doctrine/annotations) as well as on [php-json-rpc-simple](https://github.com/datto/php-json-rpc-simple). 
 
-Installation
-------------
-```javascript
-"require": {
-  "datto/json-rpc-validator": "~2.0"
-}
-```    
-
-Usage
------
+Examples
+--------
 Annotate your API endpoint classes like this:
 
 ```php
@@ -46,3 +38,23 @@ $result = $server->reply('{"jsonrpc": "2.0", "method": "math/divide", "params": 
 // Because 'b' cannot be 0, this will return
 // {"jsonrpc":"2.0","id":1,"error":{"code":-32602,"message":"Invalid params"}}
 ```
+
+Requirements
+------------
+* PHP >= 5.3
+
+Installation
+------------
+```javascript
+"require": {
+  "datto/json-rpc-validator": "~2.0"
+}
+```   
+
+License
+-------
+This package is released under an open-source license: [LGPL-3.0](https://www.gnu.org/licenses/lgpl-3.0.html).
+
+Author
+------
+Written by [Philipp C. Heckel](https://github.com/binwiederhier).
