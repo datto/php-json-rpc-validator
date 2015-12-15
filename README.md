@@ -1,6 +1,8 @@
 # JSON-RPC Endpoint Validator Extension
 
-This is a validation extension for the [php-json-rpc](https://github.com/datto/php-json-rpc) library. It depends on [symfony/Validator](https://github.com/symfony/Validator), [doctrine/annotations](https://github.com/doctrine/annotations) as well as on [php-json-rpc-simple](https://github.com/datto/php-json-rpc-simple). 
+This is an annotation-based validation extension for the [php-json-rpc](https://github.com/datto/php-json-rpc) library. It validates the JSON-RPC API endpoints against well-defined constraints, e.g. type checking, regex checking, etc.
+
+The library depends on [symfony/Validator](https://github.com/symfony/Validator), [doctrine/annotations](https://github.com/doctrine/annotations) as well as on [php-json-rpc-simple](https://github.com/datto/php-json-rpc-simple). 
 
 Examples
 --------
