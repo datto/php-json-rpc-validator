@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use ReflectionMethod;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Validation;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Annotation-based validation decorator for the JSON-RPC Evaluator interface.
