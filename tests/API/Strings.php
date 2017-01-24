@@ -5,7 +5,7 @@ namespace Datto\API;
 use Datto\JsonRpc\Validator\Validate;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class String
+class Strings
 {
     /**
      * @Validate(fields={
