@@ -2,12 +2,11 @@
 
 namespace Datto\JsonRpc\Validator;
 
-use ReflectionMethod;
 use Datto\JsonRpc;
-use Datto\JsonRpc\Exception;
 use Datto\JsonRpc\Simple;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use ReflectionMethod;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\ValidatorInterface;
@@ -46,9 +45,12 @@ class Evaluator implements JsonRpc\Evaluator
      * The given mapper is used to find the validation method. If no mapper
      * is provided, a new instance of the Simple\Mapper is used.
      *
-     * @param JsonRpc\Evaluator $evaluator Underlying evaluator
-     * @param JsonRpc\Mapper $mapper Mapper to be used to find the validation method; Simple\Mapper is used if no mapper is provided.
-     * @param string[] $namespaces Annotation namespaces (default is this namespace and the Symfony constraints namespace)
+     * @param JsonRpc\Evaluator $evaluator
+     *   Underlying evaluator
+     * @param JsonRpc\Mapper $mapper
+     *   Mapper to be used to find the validation method; Simple\Mapper is used if no mapper is provided.
+     * @param string[] $namespaces
+     *   Annotation namespaces (default is this namespace and the Symfony constraints namespace)
      */
     public function __construct(JsonRpc\Evaluator $evaluator, JsonRpc\Mapper $mapper = null, array $namespaces = null)
     {
@@ -62,9 +64,12 @@ class Evaluator implements JsonRpc\Evaluator
      * Validate method arguments using annotations and pass request to
      * underlying evaluator if successful.
      *
-     * @param string $method Method name
-     * @param array $arguments Positional or associative argument array
-     * @return mixed Return value of the callable
+     * @param string $method
+     *   Method name
+     * @param array $arguments
+     *   Positional or associative argument array
+     * @return mixed
+     *   Return value of the callable
      */
     public function evaluate($method, $arguments)
     {
@@ -77,9 +82,12 @@ class Evaluator implements JsonRpc\Evaluator
      * and its Validator\Validate annotation. If an annotation exists, the
      * validateArguments() method is called for the actual validation.
      *
-     * @param string $method Method name
-     * @param array $arguments Positional or associative argument array
-     * @throws JsonRpc\Exception\Argument If the validation fails on any of the arguments
+     * @param string $method
+     *   Method name
+     * @param array $arguments
+     *   Positional or associative argument array
+     * @throws JsonRpc\Exception\Argument
+     *   If the validation fails on any of the arguments
      */
     private function validate($method, $arguments)
     {
@@ -102,13 +110,20 @@ class Evaluator implements JsonRpc\Evaluator
      * Validates each method arguments against the constraints specified
      * in the Validator\Validate annotation.
      *
-     * @param array $filledArguments Positional array of all arguments (including not provided optional arguments)
-     * @param Validate $validateAnnotation Annotation containing the argument constraints
-     * @param ReflectionMethod $reflectMethod Reflection method to be used to retrieve parameters
-     * @throws JsonRpc\Exception\Argument If the validation fails on any of the arguments
+     * @param array $filledArguments
+     *   Positional array of all arguments (including not provided optional arguments)
+     * @param Validate $validateAnnotation
+     *   Annotation containing the argument constraints
+     * @param ReflectionMethod $reflectMethod
+     *   Reflection method to be used to retrieve parameters
+     * @throws JsonRpc\Exception\Argument
+     *   If the validation fails on any of the arguments
      */
-    private function validateArguments(array $filledArguments, Validate $validateAnnotation, ReflectionMethod $reflectMethod)
-    {
+    private function validateArguments(
+        array $filledArguments,
+        Validate $validateAnnotation,
+        ReflectionMethod $reflectMethod
+    ) {
         $validator = Validation::createValidatorBuilder()->getValidator();
 
         foreach ($reflectMethod->getParameters() as $param) {
@@ -128,10 +143,14 @@ class Evaluator implements JsonRpc\Evaluator
      * Validate a single value using the given constraints array and validator. If any
      * of the constraints are violated, an exception is thrown.
      *
-     * @param mixed $value Argument value
-     * @param Constraint[] $constraints List of constraints for the given argument
-     * @param ValidatorInterface $validator Validator to be used for validation
-     * @throws JsonRpc\Exception\Argument If the validation fails on the given argument
+     * @param mixed $value
+     *   Argument value
+     * @param Constraint[] $constraints
+     *   List of constraints for the given argument
+     * @param ValidatorInterface $validator
+     *   Validator to be used for validation
+     * @throws JsonRpc\Exception\Argument
+     *   If the validation fails on the given argument
      */
     private function validateValue($value, array $constraints, ValidatorInterface $validator)
     {
@@ -151,7 +170,8 @@ class Evaluator implements JsonRpc\Evaluator
      * To register annotations, a custom Loader is registered with Doctrine. Each
      * namespace is added to that loader.
      *
-     * @param array $namespaces List of namespaces containing valid annotations
+     * @param array $namespaces
+     *   List of namespaces containing valid annotations
      */
     private function registerAnnotations($namespaces)
     {
