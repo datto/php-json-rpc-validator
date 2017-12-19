@@ -2,7 +2,6 @@
 
 namespace Datto\API;
 
-use Datto\JsonRpc\Server;
 use Datto\JsonRpc\Simple;
 use Datto\JsonRpc\Validator;
 
@@ -44,7 +43,7 @@ class EvaluatorTest extends \PHPUnit_Framework_TestCase
     public function testNoValidationOnLastValueSucceeds()
     {
         $evaluator = new Validator\Evaluator(new Simple\Evaluator());
-        $result = $evaluator->evaluate('string/noValidationOnC', array('a' => 1, 'b' => 0, 'c' => 'string'));
+        $result = $evaluator->evaluate('strings/noValidationOnC', array('a' => 1, 'b' => 0, 'c' => 'string'));
 
         $this->assertSame('10string', $result);
     }
@@ -55,13 +54,13 @@ class EvaluatorTest extends \PHPUnit_Framework_TestCase
     public function testNoValidationOnLastValueFails()
     {
         $evaluator = new Validator\Evaluator(new Simple\Evaluator());
-        $evaluator->evaluate('string/noValidationOnC', array('a' => 1, 'b' => 'INVALID', 'c' => 'string'));
+        $evaluator->evaluate('strings/noValidationOnC', array('a' => 1, 'b' => 'INVALID', 'c' => 'string'));
     }
 
     public function testValidateHexSucceeds()
     {
         $evaluator = new Validator\Evaluator(new Simple\Evaluator());
-        $result = $evaluator->evaluate('string/hexToLower', array('hex' => 'ABCDEF'));
+        $result = $evaluator->evaluate('strings/hexToLower', array('hex' => 'ABCDEF'));
 
         $this->assertSame('abcdef', $result);
     }
@@ -72,13 +71,13 @@ class EvaluatorTest extends \PHPUnit_Framework_TestCase
     public function testValidateHexFails()
     {
         $evaluator = new Validator\Evaluator(new Simple\Evaluator());
-        $evaluator->evaluate('string/hexToLower', array('hex' => 'ZZZ'));
+        $evaluator->evaluate('strings/hexToLower', array('hex' => 'ZZZ'));
     }
 
     public function testValidateOptionalArgSucceeds()
     {
         $evaluator = new Validator\Evaluator(new Simple\Evaluator());
-        $result = $evaluator->evaluate('string/concat', array('a' => 'abc'));
+        $result = $evaluator->evaluate('strings/concat', array('a' => 'abc'));
 
         $this->assertSame('abcnothing', $result);
     }
